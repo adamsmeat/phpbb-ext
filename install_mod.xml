@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[phpBB Ext]]></title>
+		<description lang="en"><![CDATA[An extension for phpBB. Allows (1) CSV export of phpBB users]]></description>
+		<github><![CDATA[https://github.com/adamsmeat/phpbb-ext]]></github>
+		<author-group>
+			<author>
+				<realname><![CDATA[Paolo Umali]]></realname>
+				<username phpbbcom="no"><![CDATA[adamsmeat]]></username>
+				<homepage><![CDATA[http://www.paoloumali.com]]></homepage>
+				<email><![CDATA[adamsmeat@gmail.com]]></email>
+			</author>
+		</author-group>
+		<mod-version>0.0.1</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>60</time>
+			<target-version>3.0.11</target-version>
+		</installation>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/*.*" to="*.*"/>
+		</copy>
+		<open src="includes/functions.php">
+			<edit>
+				<find><![CDATA[		'U_ACP' => ($auth->acl_get('a_') && !empty($user->data['is_registered'])) ? append_sid("{$phpbb_root_path}adm/index.$phpEx", false, true, $user->session_id) : '')
+]]></find>
+				<action type="before-add"><![CDATA[		'U_EXT' => ($auth->acl_get('a_') && !empty($user->data['is_registered'])) ? append_sid("{$phpbb_root_path}ext.$phpEx", false, true, $user->session_id) : '',
+		'L_EXT' => 'phpBB Ext',
+]]></action>
+			</edit>
+		</open>
+		<diy-instructions lang="en"><![CDATA[Refresh your style templates after installation]]></diy-instructions>
+	</action-group>
+</mod>

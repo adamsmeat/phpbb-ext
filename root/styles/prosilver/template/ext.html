@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+	<html ng-controller="AppCtrl">
+ <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>phpBB Ext by adamsmeat</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  <style>
+			body {
+				position:relative;
+			}
+
+			#container {
+				margin-top:60px;
+				background: #f7f7f7;
+			}
+
+			@media (max-width: 979px) {
+				#container{
+					margin-top:0;
+				}	
+			}
+  </style>
+ </head>
+ <body>
+		<div id="navbar" class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="{U_INDEX}" class="brand">{SITENAME}</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav pull-right">
+							<li><a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="x"><i class="icon-user"></i> {L_LOGIN_LOGOUT}</a></li>
+						</ul>
+						<ul class="nav">
+							<li><a href="{U_CSV}"><i class="icon-download"></i> Export CSV</a></li>
+							<li><a href="{U_ACP}">{L_ACP}</a></strong></li>
+						</ul>
+					</div>				
+				</div>
+			</div>
+		</div> 	
+	 <div id="container" class="container">
+	  <table class="table table-striped table-condensed" style="margin-bottom:0">
+	  	<thead>
+     <tr>
+	     <th>ID</th>
+	     <th>Username</th>
+	     <th>Email</th>
+	     <th>Default Group</th>
+	     <th>Groups</th>
+     </tr>	  		
+	  	</thead>
+	  	<tbody>  		
+     <!-- BEGIN _u -->
+     <tr>
+	     <td>{_u.ID}</td>
+	     <td>{_u.USERNAME}</td>
+	     <td>{_u.EMAIL}</td>
+	     <td>{_u.GROUP}</td>
+	     <td>{_u.GROUPS}</td>
+     </tr>
+     <!-- END _u -->	  		
+	  	</tbody>
+	  </table>
+	  <section><div ng-view></div></section>
+	 </div>
+	 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+ </body>
+</html>
