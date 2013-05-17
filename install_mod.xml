@@ -8,7 +8,7 @@
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		<title lang="en"><![CDATA[phpBB Ext]]></title>
 		<description lang="en"><![CDATA[An extension for phpBB. Allows (1) CSV export of phpBB users]]></description>
-		<author-notes lang="en"><![CDATA[Follow this mod at <a href="https://github.com/adamsmeat/phpbb-ext">https://github.com/adamsmeat/phpbb-ext</a>]]></author-notes>
+		<author-notes lang="en"><![CDATA[This mod applies changes to prosilver only.]]></author-notes>
 		<github><![CDATA[https://github.com/adamsmeat/phpbb-ext]]></github>
 		<author-group>
 			<author>
@@ -46,6 +46,7 @@
 ]]></action>
 			</edit>
 		</open>
-		<diy-instructions lang="en"><![CDATA[Refresh your style templates after installation]]></diy-instructions>
+		<diy-instructions lang="en"><![CDATA[Refresh your style templates after installation.
+Follow this mod at <a href="https://github.com/adamsmeat/phpbb-ext">https://github.com/adamsmeat/phpbb-ext</a>]]></diy-instructions>
 	</action-group>
 </mod>
