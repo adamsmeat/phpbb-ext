@@ -4,4 +4,4 @@ Add features to phpBB
 
 # Current features
 
-1. Export phpBB Users
+1. Export phpBB Users to csv

@@ -8,6 +8,7 @@
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		<title lang="en"><![CDATA[phpBB Ext]]></title>
 		<description lang="en"><![CDATA[An extension for phpBB. Allows (1) CSV export of phpBB users]]></description>
+		<author-notes lang="en"><![CDATA[Follow this mod at <a href="https://github.com/adamsmeat/phpbb-ext">https://github.com/adamsmeat/phpbb-ext</a>]]></author-notes>
 		<github><![CDATA[https://github.com/adamsmeat/phpbb-ext]]></github>
 		<author-group>
 			<author>
@@ -34,6 +35,14 @@
 ]]></find>
 				<action type="before-add"><![CDATA[		'U_EXT' => ($auth->acl_get('a_') && !empty($user->data['is_registered'])) ? append_sid("{$phpbb_root_path}ext.$phpEx", false, true, $user->session_id) : '',
 		'L_EXT' => 'phpBB Ext',
+]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/overall_footer.html">
+			<edit>
+				<find><![CDATA[		<!-- IF U_ACP --><br /><strong><a href="{U_ACP}">{L_ACP}</a></strong><!-- ENDIF -->
+]]></find>
+				<action type="after-add"><![CDATA[		<!-- IF U_EXT --><br /><strong><a href="{U_EXT}">{L_EXT}</a></strong><!-- ENDIF -->
 ]]></action>
 			</edit>
 		</open>
