@@ -4,6 +4,7 @@ define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
+include($phpbb_root_path . 'includes/functions_user.' . $phpEx);
 
 // Start session management
 $user->session_begin();
@@ -27,29 +28,7 @@ $u_login_logout = ($user->data['user_id'] != ANONYMOUS) ?
 
 $u_csv = append_sid("{$phpbb_root_path}".basename(__FILE__), 'format=csv', true, $user->session_id);
 
-//Create Groups map from db
-$sql = 'SELECT * FROM ' . GROUPS_TABLE;
-$result = $db->sql_query($sql);
-$_groups = $db->sql_fetchrowset($result);
 
-$groups_map = array();
-foreach ($_groups as $_group) 
-{
-	$groups_map[$_group['group_id']] = $_group['group_name'];
-}
-
-// Prettify
-$pretty_groups_map = array(
-	'1' => 'Guests',
-	'2' => 'Registered',
-	'3' => 'Coppa',
-	'4' => 'Global Moderators',
-	'5' => 'Administrators',
-	'6' => 'Bots',
-	'7' => 'Newly Registered',
-);
-
-$groups_map = $pretty_groups_map + $groups_map;
 
 //var_dump($groups_map);die;
 
@@ -79,19 +58,19 @@ foreach ($_users as $_user)
 	//filter bots, anonymous
 	if (!(($_user['group_id'] == 6) or ($_user['user_id'] == ANONYMOUS)))
 	{
+		$_user['group'] = get_group_name($_user['group_id']);
+
 		//next, identify groups that the user has
 		$_user['group_ids'] = array();
+		$_user['groups'] = array();
 		foreach ($ugs as $ug)
-			if($_user['user_id'] === $ug['user_id'])
+			if($_user['user_id'] === $ug['user_id']) {
 				$_user['group_ids'][] = $ug['group_id'];
+				$_user['groups'][] = get_group_name($ug['group_id']);
+			}
 
-
-		//change group_ids to str
-		$_user['group_ids'] = join($_user['group_ids'],', ');
-
-		//add group and groups keys
-		$_user['group'] = str_replace(array_keys($groups_map), array_values($groups_map), (string)$_user['group_id']);
-		$_user['groups'] = str_replace(array_keys($groups_map), array_values($groups_map), $_user['group_ids']);
+		//change group_ids into str
+		$_user['groups'] = join($_user['groups'],', ');
 
 		//$_u has user_id => value1, username => value2
 		//phpbb assign_block_vars wants uppercased keys 
@@ -149,7 +128,6 @@ if (isset($_GET['format'])) {
 	));
 
 	page_header();
-	make_jumpbox(append_sid("{$phpbb_root_path}viewforum.$phpEx"));
 	page_footer();		
 }
 
